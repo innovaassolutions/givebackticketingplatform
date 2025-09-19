@@ -113,19 +113,19 @@ export default function InvestorPitch() {
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
-                  <span><strong>Excessive Fees:</strong> 10-20% total fees vs our 2.5% + $1.69</span>
+                  <span className="text-gray-700"><strong>Excessive Fees:</strong> 10-20% total fees vs our 2.5% + $1.69</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
-                  <span><strong>Zero Social Impact:</strong> No charitable integration despite artist interest</span>
+                  <span className="text-gray-700"><strong>Zero Social Impact:</strong> No charitable integration despite artist interest</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
-                  <span><strong>Venue Exclusivity:</strong> Ticketmaster exclusive contracts limit competition</span>
+                  <span className="text-gray-700"><strong>Venue Exclusivity:</strong> Ticketmaster exclusive contracts limit competition</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
-                  <span><strong>Scalping Problems:</strong> Artists lose revenue to secondary market</span>
+                  <span className="text-gray-700"><strong>Scalping Problems:</strong> Artists lose revenue to secondary market</span>
                 </li>
               </ul>
             </div>
@@ -135,19 +135,19 @@ export default function InvestorPitch() {
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                  <span><strong>Lower Fees:</strong> 2.5% + $1.69 vs 10-20% competitors</span>
+                  <span className="text-gray-700"><strong>Lower Fees:</strong> 2.5% + $1.69 vs 10-20% competitors</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                  <span><strong>Dynamic Charity Pricing:</strong> Capture scalper profits for good</span>
+                  <span className="text-gray-700"><strong>Dynamic Charity Pricing:</strong> Capture scalper profits for good</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                  <span><strong>Tax Benefits:</strong> Fans get deductible charitable receipts</span>
+                  <span className="text-gray-700"><strong>Tax Benefits:</strong> Fans get deductible charitable receipts</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                  <span><strong>Industry Relationships:</strong> Leveraging key venue connections</span>
+                  <span className="text-gray-700"><strong>Industry Relationships:</strong> Leveraging key venue connections</span>
                 </li>
               </ul>
             </div>
@@ -294,21 +294,21 @@ export default function InvestorPitch() {
             <table className="w-full border-collapse">
               <thead>
                 <tr className="bg-gray-100">
-                  <th className="border p-3 text-left">Platform</th>
-                  <th className="border p-3 text-left">Market Share</th>
-                  <th className="border p-3 text-left">Total Fees</th>
-                  <th className="border p-3 text-left">Charity Integration</th>
-                  <th className="border p-3 text-left">Transparency</th>
+                  <th className="border p-3 text-left text-gray-800 font-semibold">Platform</th>
+                  <th className="border p-3 text-left text-gray-800 font-semibold">Market Share</th>
+                  <th className="border p-3 text-left text-gray-800 font-semibold">Total Fees</th>
+                  <th className="border p-3 text-left text-gray-800 font-semibold">Charity Integration</th>
+                  <th className="border p-3 text-left text-gray-800 font-semibold">Transparency</th>
                 </tr>
               </thead>
               <tbody>
                 {competitorData.map((comp, i) => (
                   <tr key={i} className={comp.name === 'Give Back' ? 'bg-green-50' : ''}>
-                    <td className="border p-3 font-semibold">{comp.name}</td>
-                    <td className="border p-3">{comp.marketShare}%</td>
-                    <td className="border p-3">{comp.fees}</td>
-                    <td className="border p-3">{comp.charity}</td>
-                    <td className="border p-3">
+                    <td className="border p-3 font-semibold text-gray-800">{comp.name}</td>
+                    <td className="border p-3 text-gray-700">{comp.marketShare}%</td>
+                    <td className="border p-3 text-gray-700">{comp.fees}</td>
+                    <td className="border p-3 text-gray-700">{comp.charity}</td>
+                    <td className="border p-3 text-gray-700">
                       {comp.name === 'Give Back' ? '✅ Full' : '❌ Limited'}
                     </td>
                   </tr>
@@ -319,45 +319,45 @@ export default function InvestorPitch() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">Our Unique Value Proposition</h3>
+              <h3 className="text-xl font-bold mb-4 text-gray-800">Our Unique Value Proposition</h3>
               <ul className="space-y-2">
                 <li className="flex items-center gap-2">
                   <Heart className="w-5 h-5 text-red-500" />
-                  <span>First platform with built-in charity giving</span>
+                  <span className="text-gray-700">First platform with built-in charity giving</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Target className="w-5 h-5 text-blue-500" />
-                  <span>Artist-controlled revenue split (0-25% to charity)</span>
+                  <span className="text-gray-700">Artist-controlled revenue split (0-25% to charity)</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <TrendingUp className="w-5 h-5 text-green-500" />
-                  <span>Lower fees than all major competitors</span>
+                  <span className="text-gray-700">Lower fees than all major competitors</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Globe className="w-5 h-5 text-purple-500" />
-                  <span>Real-time impact tracking and transparency</span>
+                  <span className="text-gray-700">Real-time impact tracking and transparency</span>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="text-xl font-bold mb-4">Technology Differentiators</h3>
+              <h3 className="text-xl font-bold mb-4 text-gray-800">Technology Differentiators</h3>
               <ul className="space-y-2">
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span>Modern Next.js 15 + TypeScript architecture</span>
+                  <span className="text-gray-700">Modern Next.js 15 + TypeScript architecture</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span>Real-time seating map with WebSocket updates</span>
+                  <span className="text-gray-700">Real-time seating map with WebSocket updates</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span>Interactive charity uplift controls for artists</span>
+                  <span className="text-gray-700">Interactive charity uplift controls for artists</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span>Comprehensive impact dashboards</span>
+                  <span className="text-gray-700">Comprehensive impact dashboards</span>
                 </li>
               </ul>
             </div>
@@ -391,45 +391,45 @@ export default function InvestorPitch() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">Use of Funds</h3>
+              <h3 className="text-xl font-bold mb-4 text-gray-800">Use of Funds</h3>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span>Core Platform Development</span>
-                  <span className="font-bold">40% ($300K)</span>
+                  <span className="text-gray-700">Core Platform Development</span>
+                  <span className="font-bold text-gray-800">40% ($300K)</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span>Charity Integration</span>
-                  <span className="font-bold">13% ($100K)</span>
+                  <span className="text-gray-700">Charity Integration</span>
+                  <span className="font-bold text-gray-800">13% ($100K)</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span>Compliance & Legal</span>
-                  <span className="font-bold">40% ($300K)</span>
+                  <span className="text-gray-700">Compliance & Legal</span>
+                  <span className="font-bold text-gray-800">40% ($300K)</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span>Operations & Marketing</span>
-                  <span className="font-bold">7% ($50K)</span>
+                  <span className="text-gray-700">Operations & Marketing</span>
+                  <span className="font-bold text-gray-800">7% ($50K)</span>
                 </div>
               </div>
             </div>
 
             <div>
-              <h3 className="text-xl font-bold mb-4">Key Milestones</h3>
+              <h3 className="text-xl font-bold mb-4 text-gray-800">Key Milestones</h3>
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                  <span><strong>Phase 1 (4-6 weeks):</strong> Market validation & industry interviews</span>
+                  <span className="text-gray-700"><strong>Phase 1 (4-6 weeks):</strong> Market validation & industry interviews</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
-                  <span><strong>Phase 2 (8-12 weeks):</strong> Technical proof of concept & charity integration</span>
+                  <span className="text-gray-700"><strong>Phase 2 (8-12 weeks):</strong> Technical proof of concept & charity integration</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-purple-500 rounded-full mt-2"></div>
-                  <span><strong>Phase 3 (6 months):</strong> Pilot with 2-3 independent venues</span>
+                  <span className="text-gray-700"><strong>Phase 3 (6 months):</strong> Pilot with 2-3 independent venues</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
-                  <span><strong>Year 2:</strong> Scale to 50 venues, reach break-even volume</span>
+                  <span className="text-gray-700"><strong>Year 2:</strong> Scale to 50 venues, reach break-even volume</span>
                 </div>
               </div>
             </div>
@@ -543,7 +543,7 @@ export default function InvestorPitch() {
               )}
             </div>
 
-            <div className="prose prose-lg max-w-none">
+            <div className="w-full">
               {slides[currentSlide].content}
             </div>
           </motion.div>

@@ -201,84 +201,144 @@ export default function InvestorPitch() {
     {
       id: 4,
       title: "Revenue Model",
-      subtitle: "Transparent 8% Platform Fee + Charity Uplift",
+      subtitle: "2.5% + $1.69 Platform Fee + Dynamic Charity Uplift",
       content: (
-        <div className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-gray-50 p-6 rounded-xl">
-              <h3 className="font-bold text-lg mb-4">Revenue Transaction Example</h3>
-              <div className="space-y-3">
-                <div className="flex justify-between">
-                  <span>Face Value:</span>
-                  <span className="font-bold">${revenueModel.averageTicketPrice}</span>
+        <div className="space-y-8">
+          {/* Large Revenue Model Example Card */}
+          <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-2xl border border-gray-200">
+            <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">Transaction Revenue Breakdown</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <div className="text-center bg-white p-4 rounded-lg shadow-sm">
+                <div className="text-sm text-gray-600 mb-2">Face Value</div>
+                <div className="text-2xl font-bold text-gray-800">${revenueModel.averageTicketPrice}</div>
+              </div>
+              <div className="text-center bg-white p-4 rounded-lg shadow-sm">
+                <div className="text-sm text-gray-600 mb-2">Market Price</div>
+                <div className="text-2xl font-bold text-blue-600">${revenueModel.marketPrice}</div>
+              </div>
+              <div className="text-center bg-white p-4 rounded-lg shadow-sm">
+                <div className="text-sm text-gray-600 mb-2">Platform Fee</div>
+                <div className="text-2xl font-bold text-green-600">${(revenueModel.marketPrice * revenueModel.platformFee / 100 + revenueModel.fixedFee).toFixed(2)}</div>
+                <div className="text-xs text-gray-500">({revenueModel.platformFee}% + ${revenueModel.fixedFee})</div>
+              </div>
+              <div className="text-center bg-white p-4 rounded-lg shadow-sm">
+                <div className="text-sm text-gray-600 mb-2">Charity Impact</div>
+                <div className="text-2xl font-bold text-purple-600">${revenueModel.charitableUplift}</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Two-column layout for better white space utilization */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Left Column */}
+            <div className="space-y-6">
+              <div className="bg-gray-50 p-8 rounded-xl border border-gray-200">
+                <h3 className="text-xl font-bold text-gray-800 mb-6">Fee Structure Comparison</h3>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center py-2">
+                    <span className="text-gray-700 text-lg">Ticketmaster:</span>
+                    <span className="font-bold text-red-600 text-lg">10-20%</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2">
+                    <span className="text-gray-700 text-lg">StubHub:</span>
+                    <span className="font-bold text-red-600 text-lg">10-15%</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2">
+                    <span className="text-gray-700 text-lg">Eventbrite:</span>
+                    <span className="font-bold text-orange-600 text-lg">3.5-7%</span>
+                  </div>
+                  <div className="flex justify-between items-center border-t-2 pt-4 mt-4">
+                    <span className="text-gray-800 font-semibold text-lg">Give Back:</span>
+                    <span className="font-bold text-green-600 text-lg">{revenueModel.platformFee}% + ${revenueModel.fixedFee}</span>
+                  </div>
                 </div>
-                <div className="flex justify-between">
-                  <span>Market Price:</span>
-                  <span className="font-bold">${revenueModel.marketPrice}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Platform Fee:</span>
-                  <span className="font-bold">${(revenueModel.marketPrice * revenueModel.platformFee / 100 + revenueModel.fixedFee).toFixed(2)}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Charity Uplift:</span>
-                  <span className="font-bold">${revenueModel.charitableUplift}</span>
+              </div>
+
+              <div className="bg-blue-50 p-8 rounded-xl border border-blue-200">
+                <h3 className="text-xl font-bold text-gray-800 mb-6">Key Business Metrics</h3>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center py-2">
+                    <span className="text-gray-700 text-lg">Market Growth Rate:</span>
+                    <span className="font-bold text-blue-600 text-lg">{revenueModel.marketGrowthRate}%</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2">
+                    <span className="text-gray-700 text-lg">Break-even Volume:</span>
+                    <span className="font-bold text-blue-600 text-lg">{(revenueModel.breakEvenTransactions / 1000).toFixed(0)}K tickets</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2">
+                    <span className="text-gray-700 text-lg">Total Market Size:</span>
+                    <span className="font-bold text-blue-600 text-lg">${revenueModel.totalMarketSize / 1000000000}B</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-blue-50 p-6 rounded-xl">
-              <h3 className="font-bold text-lg mb-4">Business Model Key Metrics</h3>
-              <div className="space-y-3">
-                <div className="flex justify-between">
-                  <span>Market Growth Rate:</span>
-                  <span className="font-bold">{revenueModel.marketGrowthRate}%</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Break-even Volume:</span>
-                  <span className="font-bold">{(revenueModel.breakEvenTransactions / 1000).toFixed(0)}K tickets</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Total Market Size:</span>
-                  <span className="font-bold">${revenueModel.totalMarketSize / 1000000000}B</span>
+            {/* Right Column */}
+            <div className="space-y-6">
+              <div className="bg-green-50 p-8 rounded-xl border border-green-200">
+                <h3 className="text-xl font-bold text-gray-800 mb-6">Revenue Projections</h3>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center py-2">
+                    <span className="text-gray-700 text-lg">Year 1 Revenue:</span>
+                    <span className="font-bold text-green-600 text-lg">${(revenueModel.yearOneRevenue / 1000).toFixed(0)}K</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2">
+                    <span className="text-gray-700 text-lg">Year 3 Revenue:</span>
+                    <span className="font-bold text-green-600 text-lg">${(revenueModel.yearThreeRevenue / 1000000).toFixed(1)}M</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2">
+                    <span className="text-gray-700 text-lg">Conservative Estimate:</span>
+                    <span className="font-bold text-green-600 text-lg">30% below projections</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="bg-green-50 p-6 rounded-xl">
-              <h3 className="font-bold text-lg mb-4">Revenue Impact</h3>
-              <div className="space-y-3">
-                <div className="flex justify-between">
-                  <span>Year 1 Revenue:</span>
-                  <span className="font-bold">${(revenueModel.yearOneRevenue / 1000).toFixed(0)}K</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Year 3 Revenue:</span>
-                  <span className="font-bold">${(revenueModel.yearThreeRevenue / 1000000).toFixed(1)}M</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Break-even Volume:</span>
-                  <span className="font-bold">{(revenueModel.breakEvenTransactions / 1000).toFixed(0)}K tickets</span>
+              <div className="bg-purple-50 p-8 rounded-xl border border-purple-200">
+                <h3 className="text-xl font-bold text-gray-800 mb-6">Competitive Advantage</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                    <span className="text-gray-700 text-lg">Lowest fees in industry</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                    <span className="text-gray-700 text-lg">Built-in charity integration</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                    <span className="text-gray-700 text-lg">Real-time impact tracking</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                    <span className="text-gray-700 text-lg">Artist-controlled uplift</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-primary to-brand-500 p-6 rounded-xl text-white">
-            <h3 className="text-xl font-bold mb-4">5-Year Financial Projection</h3>
-            <div className="grid grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="text-2xl font-bold">${(revenueModel.yearOneRevenue / 1000).toFixed(0)}K</div>
-                <div className="text-white/80">Year 1 Revenue</div>
+          {/* Enhanced Financial Projection Section */}
+          <div className="bg-gradient-to-r from-primary to-brand-500 p-10 rounded-2xl text-white">
+            <h3 className="text-2xl font-bold mb-8 text-center">Financial Growth Trajectory</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="text-center bg-white/10 p-6 rounded-xl backdrop-blur-sm">
+                <div className="text-3xl font-bold mb-2">${(revenueModel.yearOneRevenue / 1000).toFixed(0)}K</div>
+                <div className="text-white/80 text-lg">Year 1 Revenue</div>
+                <div className="text-white/60 text-sm mt-2">Conservative Estimate</div>
               </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold">${(revenueModel.yearThreeRevenue / 1000000).toFixed(1)}M</div>
-                <div className="text-white/80">Year 3 Revenue</div>
+              <div className="text-center bg-white/10 p-6 rounded-xl backdrop-blur-sm">
+                <div className="text-3xl font-bold mb-2">${(revenueModel.yearThreeRevenue / 1000000).toFixed(1)}M</div>
+                <div className="text-white/80 text-lg">Year 3 Revenue</div>
+                <div className="text-white/60 text-sm mt-2">Growth Scenario</div>
               </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold">{revenueModel.totalMarketSize / 1000000000}B</div>
-                <div className="text-white/80">Total Market</div>
+              <div className="text-center bg-white/10 p-6 rounded-xl backdrop-blur-sm">
+                <div className="text-3xl font-bold mb-2">${(revenueModel.totalMarketSize / 1000000000)}B</div>
+                <div className="text-white/80 text-lg">Total Market</div>
+                <div className="text-white/60 text-sm mt-2">Global Opportunity</div>
               </div>
+            </div>
+            <div className="text-center mt-8">
+              <div className="text-lg opacity-90">Break-even at {(revenueModel.breakEvenTransactions / 1000).toFixed(0)}K annual tickets</div>
             </div>
           </div>
         </div>

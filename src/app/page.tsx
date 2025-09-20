@@ -15,7 +15,7 @@ export default function Home() {
         <div className="flex justify-end">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="p-3 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300"
+            className="p-3 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300 shadow-lg shadow-black/10"
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -29,48 +29,76 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-40 bg-black/20 backdrop-blur-md"
             onClick={() => setIsMenuOpen(false)}
           >
             <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 20 }}
-              className="absolute right-0 top-0 h-full w-80 bg-background/95 backdrop-blur-xl border-l border-white/20"
+              initial={{ x: '100%', opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: '100%', opacity: 0 }}
+              transition={{
+                type: 'spring',
+                damping: 25,
+                stiffness: 300,
+                opacity: { duration: 0.2 }
+              }}
+              className="absolute right-4 top-4 bottom-4 w-80 bg-white/5 backdrop-blur-3xl border border-white/10 rounded-3xl shadow-2xl shadow-black/20"
               onClick={(e) => e.stopPropagation()}
+              style={{
+                background: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)',
+                boxShadow: '0 25px 50px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1)',
+              }}
             >
-              <div className="p-8 pt-20">
-                <nav className="space-y-6">
+              {/* Glass panel inner glow */}
+              <div className="absolute inset-[1px] rounded-3xl bg-gradient-to-b from-white/5 to-transparent pointer-events-none" />
+
+              <div className="relative p-8 pt-20 h-full">
+                <nav className="space-y-1">
                   <Link
                     href="/event/lady-gaga-kl"
-                    className="block text-xl font-semibold text-white hover:text-brand-400 transition-colors"
+                    className="group block p-4 rounded-2xl text-lg font-medium text-white/90 hover:text-white hover:bg-white/5 transition-all duration-300 border border-transparent hover:border-white/10"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    Book Tickets
+                    <div className="flex items-center justify-between">
+                      <span>Book Tickets</span>
+                      <div className="w-1.5 h-1.5 rounded-full bg-brand-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </div>
                   </Link>
                   <Link
                     href="/artist"
-                    className="block text-xl font-semibold text-white hover:text-brand-400 transition-colors"
+                    className="group block p-4 rounded-2xl text-lg font-medium text-white/90 hover:text-white hover:bg-white/5 transition-all duration-300 border border-transparent hover:border-white/10"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    Artist
+                    <div className="flex items-center justify-between">
+                      <span>Artist</span>
+                      <div className="w-1.5 h-1.5 rounded-full bg-brand-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </div>
                   </Link>
                   <Link
                     href="/charity"
-                    className="block text-xl font-semibold text-white hover:text-brand-400 transition-colors"
+                    className="group block p-4 rounded-2xl text-lg font-medium text-white/90 hover:text-white hover:bg-white/5 transition-all duration-300 border border-transparent hover:border-white/10"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    Charity
+                    <div className="flex items-center justify-between">
+                      <span>Charity</span>
+                      <div className="w-1.5 h-1.5 rounded-full bg-brand-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </div>
                   </Link>
                   <Link
                     href="/pitch"
-                    className="block text-xl font-semibold text-white hover:text-brand-400 transition-colors"
+                    className="group block p-4 rounded-2xl text-lg font-medium text-white/90 hover:text-white hover:bg-white/5 transition-all duration-300 border border-transparent hover:border-white/10"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    Investors
+                    <div className="flex items-center justify-between">
+                      <span>Investors</span>
+                      <div className="w-1.5 h-1.5 rounded-full bg-brand-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </div>
                   </Link>
                 </nav>
+
+                {/* Bottom accent line */}
+                <div className="absolute bottom-8 left-8 right-8 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
               </div>
             </motion.div>
           </motion.div>

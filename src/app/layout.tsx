@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Luxurious_Script } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+});
+
+const luxuriousScript = Luxurious_Script({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-luxurious-script",
 });
 
 export const metadata: Metadata = {
@@ -26,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.variable} font-sans antialiased bg-background text-foreground`}>
+      <body className={`${inter.variable} ${luxuriousScript.variable} font-sans antialiased bg-background text-foreground`}>
         <div className="min-h-screen">
           {children}
         </div>

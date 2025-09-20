@@ -13,6 +13,7 @@
     "ct": "PLAYWRIGHT_CT_COMPONENT_NAME=react playwright test -c playwright-ct.config.ts"
   },
   "dependencies": {
+    "@paper-design/shaders-react": "^0.0.54",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",

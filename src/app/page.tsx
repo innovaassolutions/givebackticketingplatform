@@ -1,212 +1,172 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { MeshGradient } from '@paper-design/shaders-react';
+import { Menu, X } from 'lucide-react';
 
 export default function Home() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col relative overflow-hidden">
-      {/* Hero Background */}
-      <div className="absolute inset-0 z-0">
-        {/* Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: 'url(/images/concert-hero.jpg)' }}
+    <div className="min-h-screen text-foreground flex flex-col relative overflow-hidden">
+      {/* Header with Hamburger Menu */}
+      <header className="relative z-50 p-6">
+        <div className="flex justify-end">
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="p-3 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300"
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+      </header>
+
+      {/* Hamburger Menu Overlay */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 20 }}
+              className="absolute right-0 top-0 h-full w-80 bg-background/95 backdrop-blur-xl border-l border-white/20"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="p-8 pt-20">
+                <nav className="space-y-6">
+                  <Link
+                    href="/event/lady-gaga-kl"
+                    className="block text-xl font-semibold text-white hover:text-brand-400 transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Book Tickets
+                  </Link>
+                  <Link
+                    href="/artist"
+                    className="block text-xl font-semibold text-white hover:text-brand-400 transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Artist
+                  </Link>
+                  <Link
+                    href="/charity"
+                    className="block text-xl font-semibold text-white hover:text-brand-400 transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Charity
+                  </Link>
+                  <Link
+                    href="/pitch"
+                    className="block text-xl font-semibold text-white hover:text-brand-400 transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Investors
+                  </Link>
+                </nav>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Shader Background */}
+      <div className="fixed inset-0 z-0" style={{ width: '100vw', height: '100vh' }}>
+        <MeshGradient
+          height="100vh"
+          colors={["#e0eaff", "#241d9a", "#f75092", "#9f50d3"]}
+          distortion={0.8}
+          swirl={0.1}
+          grainMixer={0}
+          grainOverlay={0}
+          offsetX={0}
+          offsetY={0}
+          scale={1}
+          rotation={0}
+          speed={1}
         />
-
-        {/* Dynamic Concert Lighting Effect */}
-        <div className="absolute inset-0 opacity-40">
-          {[...Array(12)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute rounded-full"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                width: `${Math.random() * 150 + 75}px`,
-                height: `${Math.random() * 150 + 75}px`,
-                background: `radial-gradient(circle, ${
-                  ['#026cdf', '#33b8aa', '#ff6b9d', '#ffd93d', '#6bcf7f', '#ff4757'][Math.floor(Math.random() * 6)]
-                }30 0%, transparent 70%)`
-              }}
-              animate={{
-                opacity: [0.1, 0.6, 0.1],
-                scale: [0.7, 1.3, 0.7],
-                x: [0, Math.random() * 50 - 25, 0],
-                y: [0, Math.random() * 50 - 25, 0],
-              }}
-              transition={{
-                duration: 4 + Math.random() * 6,
-                repeat: Infinity,
-                delay: Math.random() * 3,
-                ease: "easeInOut"
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Spotlight Effects */}
-        <div className="absolute inset-0 opacity-20">
-          {[...Array(3)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute"
-              style={{
-                left: `${20 + i * 30}%`,
-                top: `10%`,
-                width: '200px',
-                height: '400px',
-                background: `linear-gradient(180deg, ${
-                  ['#026cdf', '#33b8aa', '#ffd93d'][i]
-                }40 0%, transparent 100%)`
-              }}
-              animate={{
-                opacity: [0.1, 0.4, 0.1],
-                rotateZ: [0, 10, -10, 0],
-              }}
-              transition={{
-                duration: 6 + i * 2,
-                repeat: Infinity,
-                delay: i * 1.5,
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Cinematic Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30" />
       </div>
 
-      {/* Content Overlay */}
+      {/* Content */}
       <div className="relative z-10 min-h-screen flex flex-col">
-        {/* Hero Section */}
-        <main className="flex-1 flex items-center justify-center px-6 py-20">
-          <div className="max-w-6xl mx-auto text-center">
-          {/* Main Headline */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-12"
-          >
-            <h1 className="text-6xl sm:text-7xl md:text-8xl font-bold mb-6
-                           bg-gradient-to-r from-white via-brand-400 to-primary
-                           bg-clip-text text-transparent drop-shadow-lg">
-              Fair Tickets.
-            </h1>
-            <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-8
-                           bg-gradient-to-r from-primary via-brand-400 to-white
-                           bg-clip-text text-transparent drop-shadow-lg">
-              Real Impact.
-            </h2>
-            <div className="backdrop-blur-sm bg-black/20 rounded-2xl p-6 mb-8">
-              <p className="text-xl sm:text-2xl text-white max-w-3xl mx-auto leading-relaxed font-medium">
-                A modern ticketing platform where every purchase supports the causes you care about.
-                Experience transparent pricing and meaningful impact.
+        {/* Main Content Area */}
+        <main className="flex-1 flex items-center px-8 md:px-16 lg:px-24">
+          <div className="max-w-2xl">
+            {/* New Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mb-8"
+            >
+              <span className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-sm font-medium">
+                ✨ New Give Back Experience
+              </span>
+            </motion.div>
+
+            {/* Main Headline */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mb-8"
+            >
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-light text-white leading-tight mb-4">
+                Fair Tickets.
+                <span className="block font-normal bg-gradient-to-r from-purple-300 via-pink-300 to-blue-300 bg-clip-text text-transparent" style={{ fontFamily: '"Luxurious Script", cursive' }}>
+                  Real Impact.
+                </span>
+              </h1>
+            </motion.div>
+
+            {/* Description */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="mb-12"
+            >
+              <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-xl">
+              Experience ticketing reimagined, where fairness is standard, generosity is built in.
+              Every event becomes a chance to make a difference.
               </p>
+            </motion.div>
+
+          </div>
+        </main>
+
+        {/* Bottom Right Badge */}
+        <div className="absolute bottom-8 right-8">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center"
+          >
+            <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+              <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
             </div>
           </motion.div>
-
-          {/* Role Switcher Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
-          >
-            {/* Artist Portal Button */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Link
-                href="/artist"
-                className="group relative px-8 py-4 bg-primary text-white rounded-xl
-                           font-semibold text-lg transition-all duration-300
-                           hover:bg-primary-dark hover:shadow-lg hover:shadow-primary/25
-                           min-w-[200px] block"
-              >
-                <span className="relative z-10">Artist Portal</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-primary-light to-brand-400
-                                opacity-0 group-hover:opacity-20 rounded-xl transition-opacity duration-300" />
-              </Link>
-            </motion.div>
-
-            {/* Fan Demo Button */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Link
-                href="/event/lady-gaga-kl"
-                className="group relative px-8 py-4 bg-brand-500 text-white rounded-xl
-                           font-semibold text-lg transition-all duration-300
-                           hover:bg-brand-600 hover:shadow-lg hover:shadow-brand-500/25
-                           min-w-[200px] block"
-              >
-                <span className="relative z-10">Fan Demo</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-brand-400 to-primary-light
-                                opacity-0 group-hover:opacity-20 rounded-xl transition-opacity duration-300" />
-              </Link>
-            </motion.div>
-
-            {/* Charity Dashboard Button */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Link
-                href="/charity"
-                className="group relative px-8 py-4 border-2 border-brand-400 text-brand-400 rounded-xl
-                           font-semibold text-lg transition-all duration-300
-                           hover:bg-brand-400 hover:text-background hover:shadow-lg hover:shadow-brand-400/25
-                           min-w-[200px] block"
-              >
-                <span className="relative z-10">Charity Dashboard</span>
-              </Link>
-            </motion.div>
-          </motion.div>
-
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-12 text-gray-400 text-lg"
-          >
-            Choose your experience to explore the platform
-          </motion.p>
-
-          {/* Investor Access */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-8"
-          >
-            <Link
-              href="/pitch"
-              className="inline-flex items-center gap-2 px-4 py-2 text-sm text-gray-400 hover:text-white
-                         border border-gray-600 hover:border-gray-400 rounded-lg transition-colors"
-            >
-              🔒 Investor Presentation
-            </Link>
-          </motion.div>
         </div>
-      </main>
 
-      {/* Footer */}
-      <footer className="py-8 text-center">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="backdrop-blur-sm bg-black/30 rounded-lg mx-6 py-4"
-        >
-          <p className="text-white/90 font-medium">&copy; 2025 Give Back Ticketing Platform. Powered by transparency and impact.</p>
-        </motion.div>
-      </footer>
+        {/* Footer */}
+        <footer className="absolute bottom-4 left-8">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 1.0 }}
+            className="text-white/50 text-sm"
+          >
+            © 2025 Give Back Ticketing Platform
+          </motion.div>
+        </footer>
       </div>
     </div>
   );

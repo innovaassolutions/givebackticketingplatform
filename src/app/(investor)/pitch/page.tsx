@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Eye, EyeOff, Lock, Unlock, TrendingUp, DollarSign, Users, Globe, Heart, Target, BarChart3, PieChart } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowLeft, ArrowRight, Eye, EyeOff, Lock, Unlock, TrendingUp, DollarSign, Users, Globe, Heart, Target, BarChart3, PieChart, Home } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, BarChart, Bar, PieChart as RechartsPieChart, Pie, Cell } from 'recharts';
 
 // Password protection
@@ -84,7 +85,7 @@ export default function InvestorPitch() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-3 gap-6 mb-8">
             <div className="text-center">
               <div className="text-3xl font-bold text-primary">${(revenueModel.yearThreeRevenue / 1000000).toFixed(1)}M</div>
               <div className="text-gray-600">Year 3 Revenue</div>
@@ -98,6 +99,7 @@ export default function InvestorPitch() {
               <div className="text-gray-600">Charity Uplift</div>
             </div>
           </div>
+
         </div>
       )
     },
@@ -536,7 +538,7 @@ export default function InvestorPitch() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter investor password"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 bg-white placeholder-gray-500"
               />
               <button
                 type="button"
@@ -635,14 +637,23 @@ export default function InvestorPitch() {
             ))}
           </div>
 
-          <button
-            onClick={nextSlide}
-            disabled={currentSlide === slides.length - 1}
-            className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Next
-            <ArrowRight className="w-4 h-4" />
-          </button>
+          {currentSlide === slides.length - 1 ? (
+            <Link
+              href="/"
+              className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
+            >
+              <Home className="w-4 h-4" />
+              Main Page
+            </Link>
+          ) : (
+            <button
+              onClick={nextSlide}
+              className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark"
+            >
+              Next
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          )}
         </div>
       </footer>
     </div>

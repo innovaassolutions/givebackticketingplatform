@@ -10,9 +10,42 @@ export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <div className="min-h-screen text-foreground flex flex-col relative overflow-hidden">
-      {/* Header with Hamburger Menu */}
+      {/* Header with Navigation */}
       <header className="relative z-50 p-6">
-        <div className="flex justify-end">
+        {/* Desktop Navigation - Individual Glass Buttons */}
+        <div className="hidden md:flex justify-center items-center space-x-8">
+          <Link
+            href="/event/lady-gaga-kl"
+            className="relative px-6 py-3 rounded-full text-white/90 hover:text-white transition-all duration-300 text-base font-medium group"
+          >
+            <div className="absolute inset-0 rounded-full bg-white/0 border border-transparent backdrop-blur-xl group-hover:bg-white/10 group-hover:border-white/20 transition-all duration-300 shadow-lg shadow-black/0 group-hover:shadow-black/10"></div>
+            <span className="relative z-10">Tickets</span>
+          </Link>
+          <Link
+            href="/artist"
+            className="relative px-6 py-3 rounded-full text-white/90 hover:text-white transition-all duration-300 text-base font-medium group"
+          >
+            <div className="absolute inset-0 rounded-full bg-white/0 border border-transparent backdrop-blur-xl group-hover:bg-white/10 group-hover:border-white/20 transition-all duration-300 shadow-lg shadow-black/0 group-hover:shadow-black/10"></div>
+            <span className="relative z-10">Artist</span>
+          </Link>
+          <Link
+            href="/charity"
+            className="relative px-6 py-3 rounded-full text-white/90 hover:text-white transition-all duration-300 text-base font-medium group"
+          >
+            <div className="absolute inset-0 rounded-full bg-white/0 border border-transparent backdrop-blur-xl group-hover:bg-white/10 group-hover:border-white/20 transition-all duration-300 shadow-lg shadow-black/0 group-hover:shadow-black/10"></div>
+            <span className="relative z-10">Charity</span>
+          </Link>
+          <Link
+            href="/pitch"
+            className="relative px-6 py-3 rounded-full text-white/90 hover:text-white transition-all duration-300 text-base font-medium group"
+          >
+            <div className="absolute inset-0 rounded-full bg-white/0 border border-transparent backdrop-blur-xl group-hover:bg-white/10 group-hover:border-white/20 transition-all duration-300 shadow-lg shadow-black/0 group-hover:shadow-black/10"></div>
+            <span className="relative z-10">Investors</span>
+          </Link>
+        </div>
+
+        {/* Mobile Hamburger Menu */}
+        <div className="md:hidden flex justify-end">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="p-3 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300 shadow-lg shadow-black/10"
@@ -22,7 +55,7 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Hamburger Menu Overlay */}
+      {/* Mobile Hamburger Menu Overlay */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
